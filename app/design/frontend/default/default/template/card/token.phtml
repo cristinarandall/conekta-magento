@@ -8,7 +8,14 @@
           document.getElementById('card_expiration').setAttribute("data-conekta", "card[exp_month]");
           document.getElementById('card_expiration_yr').setAttribute("data-conekta", "card[exp_year]");
           var form = document.getElementById("payment_form_card");
+
+	  if ($(".number-of-months").val()) {
+          Conekta.charge.create($form, successResponseHandler, errorResponseHandler);
+	  } else {
+	  $(".number-of-months").remove();
           Conekta.token.create(form, successResponseHandler, errorResponseHandler);
+	  }
+
         } else {
           conektaTempSave();
         }
